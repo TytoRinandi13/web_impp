@@ -3,9 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")      // Pakai jalur pooler
-  directUrl = env("POSTGRES_URL_NON_POOLING") // Pakai jalur langsung (tanpa pooler)
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model Department {
@@ -45,7 +44,7 @@ model WorkProgram {
   title         String
   description   String?
   execution_date DateTime
-  status        String     @default("PLANNED") // PLANNED, COMPLETED
+  status String @default("BELUM") // BELUM, SELESAI, BATAL
   department_id String
   department    Department @relation(fields: [department_id], references: [id])
 }
